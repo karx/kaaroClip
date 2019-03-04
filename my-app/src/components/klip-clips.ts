@@ -23,7 +23,7 @@ import { getTopCLips, starClip } from '../actions/twitch.js';
 
 // These are the shared styles needed by this element.
 import { ButtonSharedStyles } from './button-shared-styles.js';
-import { ClipsState } from '../reducers/twitch.js';
+import { ClipsState, ClipState } from '../reducers/twitch.js';
 
 
 class KlipClips extends connect(store)(LitElement) {
@@ -73,7 +73,7 @@ class KlipClips extends connect(store)(LitElement) {
     store.dispatch(starClip((e.currentTarget as HTMLButtonElement).dataset['index']));
   }
 
-  private _clip_clicked(clip) {
+  private _clip_clicked(clip: ClipState) {
     console.log('in The Reactive One');
     console.log(clip.title);
   }

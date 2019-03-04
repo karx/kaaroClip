@@ -48,21 +48,24 @@ class KlipClip extends LitElement {
   
 
   private _draw() {
+    if (!this || !this.shadowRoot) {
+      return;
+    }
     var c = this.shadowRoot.getElementById("myCanvas");
     // var ctx = c.getContext("2d");
 
 
-    if (c.getContext) {
+    if (c && (c as any).getContext) {
             
       // use getContext to use the canvas for drawing
-      var ctx = c.getContext('2d');
+      var ctx = (c as any).getContext('2d');
       
       // Draw shapes
       var imageObj = new Image();
      imageObj.onload = () => {
          ctx.drawImage(imageObj, 0, 0);
          ctx.font = "14pt Calibri";
-         var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+         var gradient = ctx.createLinearGradient(0, 0, (c as any).width, 0);
           gradient.addColorStop("0", "#3333F3");
           gradient.addColorStop("0.5", "#FFFFFF");
           gradient.addColorStop("1.0", "#000000");
@@ -72,7 +75,7 @@ class KlipClip extends LitElement {
          ctx.fillText(this.title, 50, 20);
 
          ctx.font = "14pt Calibri";
-         var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+         var gradient = ctx.createLinearGradient(0, 0, (c as any).width, 0);
           gradient.addColorStop("0", "#F33333");
           gradient.addColorStop("0.5", "#FFFFFF");
           gradient.addColorStop("1.0", "#000000");
@@ -87,7 +90,6 @@ class KlipClip extends LitElement {
    } else {
       alert('You need Safari or Firefox 1.5+ to see this demo.');
    }
-
 
   }
 }
