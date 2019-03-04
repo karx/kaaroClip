@@ -1,11 +1,11 @@
 {
-  "name": "pwa-starter-kit",
+  "name": "kaaroClip",
   "version": "0.9.0",
   "contributors": [
-    "The Polymer Authors"
+    "Kartik Arora"
   ],
   "license": "BSD-3-Clause",
-  "repository": "Polymer/pwa-starter-kit",
+  "repository": "Polymer/kaaroClip",
   "scripts": {
     "start": "gulp serve",
     "build": "tsc && polymer build --auto-base-path && gulp prpl-server",

@@ -52,6 +52,9 @@ const loadPage: ActionCreator<ThunkResult> = (page: string) => (dispatch) => {
     case 'view3':
       import('../components/my-view3.js');
       break;
+    case 'top':
+      import('../components/klips-top.js');
+      break;
     default:
       page = 'view404';
       import('../components/my-view404.js');

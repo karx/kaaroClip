@@ -51,6 +51,8 @@ const INITIAL_STATE: ShopState = {
 };
 
 const shop: Reducer<ShopState, RootAction> = (state = INITIAL_STATE, action) => {
+  console.log('In reducer for Shop');
+
   switch (action.type) {
     case GET_PRODUCTS:
       return {
