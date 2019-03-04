@@ -34,7 +34,9 @@ class KlipClips extends connect(store)(LitElement) {
     ButtonSharedStyles,
     css`
       :host {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
     `
   ];
@@ -44,20 +46,19 @@ class KlipClips extends connect(store)(LitElement) {
       ${Object.keys(this._clips).map((key) => {
         const item = this._clips[key];
         return html`
-          <div>
+          <div @click=${ () => this._clip_clicked(item)}>
+
             <klip-clip title="${item.title}" 
             embed_url="${item.embed_url}"
             broadcaster_name="${item.broadcaster_name}" 
             thumbnail_url="${item.thumbnail_url}" 
             view_count="${item.view_count}" 
             created_at="${item.created_at}"
+
+            
+
             ></klip-clip>
-            <button
-                @click="${this._addButtonClicked}"
-                data-index="${item.id}"
-                title="Star">
-              Star
-            </button>
+            
           </div>
         `;
       })}
@@ -70,6 +71,11 @@ class KlipClips extends connect(store)(LitElement) {
 
   private _addButtonClicked(e: Event) {
     store.dispatch(starClip((e.currentTarget as HTMLButtonElement).dataset['index']));
+  }
+
+  private _clip_clicked(clip) {
+    console.log('in The Reactive One');
+    console.log(clip.title);
   }
 
   // This is called every time something is updated in the store.

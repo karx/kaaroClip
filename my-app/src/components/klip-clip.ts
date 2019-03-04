@@ -30,23 +30,67 @@ class KlipClip extends LitElement {
   @property({type: String})
   created_at = 0;
 
+  firstUpdated() {
+    this._draw();
+  }
 
   protected render() {
     return html`
-      ${this.title}:
-      <iframe
-        src="${this.embed_url}"
-        height="360"
-        width="640"
-        frameborder="0"
-        scrolling="no"
-        autoplay="off"
-        allowfullscreen="true">
-      </iframe>
-      ${this.broadcaster_name}
+      
+
+      <canvas id="myCanvas" width="400" height="300"}></canvas>
+
       
     `;
+  }
+
+  
+  
+
+  private _draw() {
+    var c = this.shadowRoot.getElementById("myCanvas");
+    // var ctx = c.getContext("2d");
+
+
+    if (c.getContext) {
+            
+      // use getContext to use the canvas for drawing
+      var ctx = c.getContext('2d');
+      
+      // Draw shapes
+      var imageObj = new Image();
+     imageObj.onload = () => {
+         ctx.drawImage(imageObj, 0, 0);
+         ctx.font = "14pt Calibri";
+         var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+          gradient.addColorStop("0", "#3333F3");
+          gradient.addColorStop("0.5", "#FFFFFF");
+          gradient.addColorStop("1.0", "#000000");
+          // Fill with gradient
+          ctx.fillStyle = gradient;
+
+         ctx.fillText(this.title, 50, 20);
+
+         ctx.font = "14pt Calibri";
+         var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+          gradient.addColorStop("0", "#F33333");
+          gradient.addColorStop("0.5", "#FFFFFF");
+          gradient.addColorStop("1.0", "#000000");
+          // Fill with gradient
+          ctx.fillStyle = gradient;
+
+         ctx.fillText(this.broadcaster_name, 50, 240);
+         ctx.fillText(this.view_count, 50, 260);
+         
+     };
+     imageObj.src = this.thumbnail_url; 
+   } else {
+      alert('You need Safari or Firefox 1.5+ to see this demo.');
+   }
+
+
   }
 }
 
 window.customElements.define('klip-clip', KlipClip);
+  
