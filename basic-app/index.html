@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kaaroClips</title>
     <script src="./kaaro-clip.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <div class="profile-bar"></div>
+        <div class="profile-bar">
+            <a href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id={{Client_ID}}&redirect_uri=http://localhost:8080/basic-app/&scope=viewing_activity_read">
+                <div class="auth-btn"> Click to Auth </div>
+            </a>
+        </div>
         <div class="all-your-clips">
             <kaaro-clip></kaaro-clip>
         </div>

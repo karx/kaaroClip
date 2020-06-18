@@ -13,6 +13,12 @@ So we have kaaroClips, so we can do all of that and more.
 
 Twitter bot live [kaaroClips on Twitter](https://twitter.com/ClipsKaaro).
 
+## How are Twitch clips exposed/used
+* https://dev.twitch.tv/docs/embed/video-and-clips
+* https://help.twitch.tv/s/article/how-to-use-clips?language=en_US
+* https://dev.twitch.tv/docs/api/reference#get-clips
+
+
 
 ## Intermd Jump thoughts
 * Complete/Add Auth flow Twitch
