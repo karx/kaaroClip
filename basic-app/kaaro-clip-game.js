@@ -72,20 +72,21 @@ class BasicWebComponent extends HTMLElement {
 
     vodElm.setAttribute('src', vodURL);
     vodElm.setAttribute('poster', thumbnail_url);
-    // vodElm.setAttribute('preload', 'metadata');
+    vodElm.setAttribute('preload', 'metadata');
     
     vidContainerDiv.append(vodElm);
     console.log('Test log');
-    vodElm.addEventListener('canplay', (e) => {
-      console.log('Can PLay now');
-      e.target.addEventListener('mouseover', (elm) => {
-        console.log('On mouse Over: ');
-        e.target.play();
-      });
-      e.target.addEventListener('mouseout', (elm) => {
-        e.target.pause();
-      });
-    })
+    var timeout = null;
+
+    vodElm.addEventListener('mouseover', (elm) => {
+      console.log('On mouse Over: ');
+      timeout = setTimeout( () => vodElm.play(), 1000);
+      
+    });
+    vodElm.addEventListener('mouseout', (elm) => {
+      clearTimeout(timeout);
+      vodElm.pause();
+    });
     
     vodElm.addEventListener( 'click', (e) => {
       console.log(`Click registered`);
