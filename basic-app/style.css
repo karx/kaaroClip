@@ -10,3 +10,26 @@
     display: flex;
     flex-direction: column-reverse;
 }
+
+kaaro-clip-game {
+    display: flex;
+    flex-direction: row;
+    
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+kaaro-clip-game .each-clip {
+    flex: 1;
+    margin: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: height 2s, transform 2s;
+}
+kaaro-clip-game .each-clip:hover {
+    height: 200px;
+}
+kaaro-clip-game .each-clip  *{
+    height: 100%;
+}
