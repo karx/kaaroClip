@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>kaaroClips</title>
     <script src="./kaaro-clip-game.js" type="module"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <div class="profile-bar">
-            <a href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=qezpomfligmtrmcaw4s7mqijl5948e&redirect_uri=http://localhost:8080/basic-app/&scope=viewing_activity_read">
-                <div class="auth-btn"> Click to Auth </div>
-            </a>
-        </div>
-        <div class="game-selector-bar">
+    <script src="./kaaro-clip-list-games.js" type="module"></script>
+    
 
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="filler-bar" id="filler-bar"></div>
+      <div class="profile-bar" id="prof-bar">
+        <div class="logo-or-somethoing"></div>
+        <div class="title-container">
+          <h2>kaaroClips</h2>
+          <div class="enter-steps">
+            <div class="twitch-login each-step" id="twitch-login">
+              <a
+                href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=qezpomfligmtrmcaw4s7mqijl5948e&redirect_uri=http://localhost:8080/basic-app/&scope=viewing_activity_read"
+              >
+                <div class="glitch-twitch">
+                  <img
+                    class="twitch-logo"
+                    src="./assets/twitch-glitch/Purple/TwitchGlitchPurple.png"
+                    alt=""
+                  />
+                </div>
+                <div class="login-msg" id="login-msg">
+                  Login
+                </div>
+              </a>
+            </div>
+            <div class="enter-to-enter each-step" id="enter-to-enter">
+              <div class="enter-to-enter-logo">
+                ↪
+              </div>
+              <div class="enter-to-enter-lable">
+                Click to Enter
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="all-your-clips">
-            <kaaro-clip-game></kaaro-clip-game>
-        </div>
-        <div class="action-bar"></div>
+        <div class="filler-end"></div>
+      </div>
+      <div class="game-selector-bar" id="game-bar">
+
+      </div>
+      <div class="all-your-clips" id="clips-game-div">
+        <!-- <kaaro-clip-game></kaaro-clip-game> -->
+      </div>
+      <div class="action-bar"></div>
     </div>
-</body>
+
+    <script src="./start-the-game.js"></script>
+  </body>
 </html>

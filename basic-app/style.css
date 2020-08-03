@@ -1,14 +1,76 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #F0F0FF;
+}
 .container {
     display: flex;
     width: 100%;
+    height: 100%;
+    justify-content: start;
     flex-direction: column;
+}
+.filler-bar {
+    height: 40vh;
+    transition: height 2s, transform 2s;
+    transition-delay: 2s;
+
+}
+.filler-bar.clicked {
+    height: 0px;
 }
 .profile-bar {
     height: 100px;
-    color: beige;
     width: 100%;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.enter-steps {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+   
+}
+.each-step {
+    width: 100px;
+}
+.twitch-login {
+    transition: width 2s, transform 2s;
+    transition-delay: 1s;
+
+}
+.twitch-login.logged-in {
+    width: 0px;
+    overflow: hidden;
+}
+.twitch-logo {
+    height: 40px;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.enter-to-enter {
+    cursor: crosshair;
+    text-align: center;
+    height: 50px;
+    transition: height 2s, transform 2s;
+}
+
+.enter-to-enter.clicked {
+    height: 0px;
+    overflow: hidden;
+}
+
+.enter-to-enter-logo {
+    font-size: 2em;
+   
 }
 
 kaaro-clip-game {
@@ -31,5 +93,37 @@ kaaro-clip-game .each-clip:hover {
     height: 200px;
 }
 kaaro-clip-game .each-clip  *{
+    height: 100%;
+}
+
+.game-selector-bar {
+    /* display: flex;
+    flex-direction: row;
+    overflow-x: scroll; */
+}
+
+
+
+
+kaaro-clip-game-list {
+    display: flex;
+    flex-direction: row;
+    overflow-y: scroll;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+
+kaaro-clip-game-list .each-game {
+    flex: 1;
+    margin: 10px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: height 2s, transform 2s;
+}
+
+kaaro-clip-game-list .each-game * {
     height: 100%;
 }

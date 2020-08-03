@@ -29,41 +29,64 @@ class BasicWebComponent extends HTMLElement {
     this.init();
   }
 
-  attributeChangedCallback(attr, oldVal, newVal) {   
+  async attributeChangedCallback(attr, oldVal, newVal) {   
     console.log(attr);
+    console.log(oldVal);
+    console.log(newVal);
+    if (attr === 'game') {
+      this.data.game = newVal;
+    
+      let clipData = await this.getClipData();
+      this.clipData = clipData.data;
+    
+      this.clipData.forEach( (clip) => {
+        console.log(clip);
+        let clipURL = clip.thumbnail_url.replace('-preview-480x272.jpg','.mp4');
+        this.addVidToDOM(clipURL, clip.thumbnail_url);
+      })
+    
+    }
+    
   }
 
-  async init() {
-    if(this.clipData) {
+  async init(getNew = false) {
+    if(this.clipData && !getNew) {
 
     } else {
+      console.log('getting CLip[s');
       let clipData = await this.getClipData();
       this.clipData = clipData.data;
     }
     this.clipData.forEach( (clip) => {
       console.log(clip);
       let clipURL = clip.thumbnail_url.replace('-preview-480x272.jpg','.mp4');
-      this.addVidToDOM(clipURL);
+      this.addVidToDOM(clipURL, clip.thumbnail_url);
     })
     
   }
 
-  async addVidToDOM(vodURL) {
+  async addVidToDOM(vodURL, thumbnail_url) {
     let vidContainerDiv = document.createElement('div');
     let vodElm = document.createElement('video');
     vidContainerDiv.classList = 'each-clip';
 
     vodElm.setAttribute('src', vodURL);
+    vodElm.setAttribute('poster', thumbnail_url);
+    // vodElm.setAttribute('preload', 'metadata');
     
     vidContainerDiv.append(vodElm);
     console.log('Test log');
-    vodElm.addEventListener('mouseover', (e) => {
-      console.log('On mouse Over: ');
-      e.target.play();
-    });
-    vodElm.addEventListener('mouseout', (e) => {
-      e.target.pause();
-    });
+    vodElm.addEventListener('canplay', (e) => {
+      console.log('Can PLay now');
+      e.target.addEventListener('mouseover', (elm) => {
+        console.log('On mouse Over: ');
+        e.target.play();
+      });
+      e.target.addEventListener('mouseout', (elm) => {
+        e.target.pause();
+      });
+    })
+    
     vodElm.addEventListener( 'click', (e) => {
       console.log(`Click registered`);
     })
