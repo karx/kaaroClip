@@ -20,8 +20,17 @@ Twitter bot live [kaaroClips on Twitter](https://twitter.com/ClipsKaaro).
 
 
 
-## Intermd Jump thoughts
-* Complete/Add Auth flow Twitch
-* then Test the APIs
-* add adding webc of kaaro-clip to DOM
-* their Calls
+## Intermd Jump thoughts || OLD
+* Complete/Add Auth flow Twitch || Done
+* then Test the APIs|| Done
+* add adding webc of kaaro-clip to DOM || Done
+* their Calls || Done
+
+## Updates
+* Game Fetch Row on Top
+Shows top 20 Games as of the instant of opening this site. Click on a Game to fetch top clips on the day.
+
+* Clips are colored based on Broadcaster.
+Clips from same broadcaster would always be of same color. We have used a color palet of 12, so many collitions
+
+
