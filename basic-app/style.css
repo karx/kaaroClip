@@ -113,6 +113,8 @@ kaaro-clip-game .each-clip  video {
 }
 kaaro-clip-game .each-clip .streamer-links {
     height: 0px;
+    line-height: 24px;
+
     display: block;
     overflow: hidden;
     transition: height 1s, transform 2s;
@@ -120,6 +122,7 @@ kaaro-clip-game .each-clip .streamer-links {
 
 kaaro-clip-game .each-clip:hover .streamer-links {
     height: 20px;
+    
 }
 .game-selector-bar {
     /* display: flex;
