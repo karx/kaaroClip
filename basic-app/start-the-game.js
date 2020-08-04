@@ -1,9 +1,14 @@
+let twitch_client_id = 'qezpomfligmtrmcaw4s7mqijl5948e'
+document.getElementById('twitch-auth-link').setAttribute('href', `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${twitch_client_id}&redirect_uri=${window.location.href}&scope=viewing_activity_read`);
+
+
 
 function enableClickToEnter() {
     document.getElementById('enter-to-enter').addEventListener('click', (e) => {
         document.getElementById('prof-bar').classList = 'profile-bar clicked';
         document.getElementById('filler-bar').classList = 'filler-bar clicked';
         document.getElementById('enter-to-enter').classList = 'enter-to-enter clicked';
+        document.getElementById('enter-steps').classList = 'enter-steps clicked';
         addKaaroElement();
     
     });    

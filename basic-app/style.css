@@ -2,7 +2,12 @@ body {
     margin: 0;
     height: 100vh;
     width: 100%;
-    background-color: #F0F0FF;
+    background-color: #F0F0FF;  
+    font-family: 'Baloo Tammudu 2', cursive;
+    
+}
+h2 {
+    font-family: 'Changa One', cursive;
 }
 .container {
     display: flex;
@@ -33,7 +38,12 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-   
+    height: 50px;
+    transition: height 2s, transform 2s;
+}
+.enter-steps.clicked {
+    height:  0px;
+    overflow: hidden;
 }
 .each-step {
     width: 100px;
@@ -59,18 +69,12 @@ body {
 .enter-to-enter {
     cursor: crosshair;
     text-align: center;
-    height: 50px;
-    transition: height 2s, transform 2s;
-}
-
-.enter-to-enter.clicked {
-    height: 0px;
-    overflow: hidden;
+    
 }
 
 .enter-to-enter-logo {
     font-size: 2em;
-   
+   line-height: 60px;
 }
 
 kaaro-clip-game {
@@ -78,24 +82,45 @@ kaaro-clip-game {
     flex-direction: row;
     
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 kaaro-clip-game .each-clip {
-    flex: 1;
+    align-self: flex-start;
     margin: 10px;
-    height: 50px;
+    height: 180px;
+    width: 225px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    transition: height 2s, transform 2s;
+    /* padding: 30px; */
+    flex-direction: column;
+    background-color: #D2D2E6;
+    /* border-radius: 15px; */
+    transition: background-color 2s, padding 2s, height 2s, transform 2s;
+    cursor: crosshair;
+    outline: 5px inset;
+    outline-offset: -10px;
+
 }
 kaaro-clip-game .each-clip:hover {
-    height: 200px;
+    /* padding: 2px; */
+    background-color: #9146FF;
 }
-kaaro-clip-game .each-clip  *{
-    height: 100%;
+kaaro-clip-game .each-clip  video {
+    height: 60%;
+    border:2px #000000 solid;
+}
+kaaro-clip-game .each-clip .streamer-links {
+    height: 0px;
+    display: block;
+    overflow: hidden;
+    transition: height 1s, transform 2s;
 }
 
+kaaro-clip-game .each-clip:hover .streamer-links {
+    height: 20px;
+}
 .game-selector-bar {
     /* display: flex;
     flex-direction: row;
@@ -122,6 +147,7 @@ kaaro-clip-game-list .each-game {
     justify-content: center;
     align-items: center;
     transition: height 2s, transform 2s;
+    cursor: crosshair;
 }
 
 kaaro-clip-game-list .each-game * {

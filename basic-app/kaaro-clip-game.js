@@ -1,4 +1,6 @@
-
+let twitch_colors_accent_muted = ['#F0F0FF','#D2D2E6','#FAB4FF','#BFABFF','#FACDCD','#FC6675','#FEEE85','#FFCA5F','#BEFAE1','#57BEE6','#00C8AF','#0014A5'];
+let twitch_colors_accent = ['#8205B4','#41145F','#FA1ED2','#BE0078','#FF6905','#FA2828','#FAFA19','#00FA05','#BEFF00','#69FFC3','#00FAFA','#1E69FF'];
+let lastUsedColorIndex = 0;
 class BasicWebComponent extends HTMLElement {
   schema = {
     'game': {type: 'string', default: '32982'},
@@ -41,16 +43,16 @@ class BasicWebComponent extends HTMLElement {
     
       this.clipData.forEach( (clip) => {
         console.log(clip);
-        let clipURL = clip.thumbnail_url.replace('-preview-480x272.jpg','.mp4');
-        this.addVidToDOM(clipURL, clip.thumbnail_url);
+        
+        this.addVidToDOM(clip, lastUsedColorIndex++);
       })
     
     }
     
   }
 
-  async init(getNew = false) {
-    if(this.clipData && !getNew) {
+  async init() {
+    if(this.clipData) {
 
     } else {
       console.log('getting CLip[s');
@@ -59,25 +61,29 @@ class BasicWebComponent extends HTMLElement {
     }
     this.clipData.forEach( (clip) => {
       console.log(clip);
-      let clipURL = clip.thumbnail_url.replace('-preview-480x272.jpg','.mp4');
-      this.addVidToDOM(clipURL, clip.thumbnail_url);
+      this.addVidToDOM(clip, lastUsedColorIndex++);
     })
     
   }
 
-  async addVidToDOM(vodURL, thumbnail_url) {
+  async addVidToDOM(clip, colorCode) {
+    let vodURL = clip.thumbnail_url.replace('-preview-480x272.jpg','.mp4');
+    let thumbnail_url = clip.thumbnail_url;
     let vidContainerDiv = document.createElement('div');
     let vodElm = document.createElement('video');
+    let streamerLink = document.createElement('div');
+
     vidContainerDiv.classList = 'each-clip';
 
+    let colorIndex = (clip.broadcaster_id )%twitch_colors_accent.length;
+    vidContainerDiv.style.backgroundColor = twitch_colors_accent_muted[colorIndex];
+    vidContainerDiv.style.outlineColor = twitch_colors_accent[colorIndex];
+    vidContainerDiv.style.color = colorIndex === 11 ? '#FFF' : '#000';
     vodElm.setAttribute('src', vodURL);
     vodElm.setAttribute('poster', thumbnail_url);
     vodElm.setAttribute('preload', 'metadata');
     
-    vidContainerDiv.append(vodElm);
-    console.log('Test log');
     var timeout = null;
-
     vodElm.addEventListener('mouseover', (elm) => {
       console.log('On mouse Over: ');
       timeout = setTimeout( () => vodElm.play(), 1000);
@@ -87,12 +93,18 @@ class BasicWebComponent extends HTMLElement {
       clearTimeout(timeout);
       vodElm.pause();
     });
-    
     vodElm.addEventListener( 'click', (e) => {
       console.log(`Click registered`);
     })
+
+
+    streamerLink.href = `https://twitch.tv/${clip.broadcaster_name}`;
+    streamerLink.innerHTML = `@${clip.broadcaster_name}`;
+    streamerLink.classList = 'streamer-links';
     
     // this.shadowRoot.append(vidContainerDiv);
+    vidContainerDiv.append(vodElm);
+    vidContainerDiv.append(streamerLink);
     this.append(vidContainerDiv);
   }
 
