@@ -18,6 +18,7 @@ Twitter bot live [kaaroClips on Twitter](https://twitter.com/ClipsKaaro).
 * https://help.twitch.tv/s/article/how-to-use-clips?language=en_US
 * https://dev.twitch.tv/docs/api/reference#get-clips
 
+![Screenshot homepage](/images/home_page.png)
 
 
 ## Intermd Jump thoughts || OLD
